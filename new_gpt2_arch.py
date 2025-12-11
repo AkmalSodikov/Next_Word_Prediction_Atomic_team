@@ -124,7 +124,7 @@ def cli_predict(model):
         entropy = -torch.sum(probs * torch.log(probs + 1e-12))
         ppl = torch.exp(entropy).item()
 
-        print(f"\nPerplexity: {ppl:.3f}\nTop predictions:")
+        print(f"\nTop predictions:")
 
         top_probs, top_ids = torch.topk(probs, 5)
         for i, (p, idx) in enumerate(zip(top_probs, top_ids), 1):
@@ -200,13 +200,13 @@ def main():
             epoch_losses.append(avg_loss)
             epoch_ppls.append(avg_ppl)
 
-            print(f"Epoch {epoch} → Loss={avg_loss:.4f}, PPL={avg_ppl:.2f}")
+            print(f"Epoch {epoch} Loss={avg_loss:.4f}, PPL={avg_ppl:.2f}")
 
             if avg_loss < best_loss:
                 best_loss = avg_loss
                 model.save_pretrained(f"{SAVE_NAME}_best")
                 tokenizer.save_pretrained(f"{SAVE_NAME}_best")
-                print("✓ Saved best checkpoint")
+                print("Saved best checkpoint")
 
         save_plots(epoch_losses, epoch_ppls)
 

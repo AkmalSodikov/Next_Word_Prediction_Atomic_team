@@ -19,7 +19,7 @@ app.add_middleware(
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 base_model_name = "distilgpt2"
-lora_path = "lora_bst_epoch_3"
+lora_path = "lora_bst_best"
 
 
 print("Path of lora model: ", lora_path)
