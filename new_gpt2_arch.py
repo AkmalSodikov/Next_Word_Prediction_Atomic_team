@@ -163,7 +163,6 @@ def main():
     args = parser.parse_args()
 
     if args.mode == "train":
-        print("\n🔧 Training mode")
 
         base_model = AutoModelForCausalLM.from_pretrained(BASE_MODEL_NAME)
         base_model.config.pad_token_id = tokenizer.pad_token_id
